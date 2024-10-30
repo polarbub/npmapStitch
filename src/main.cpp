@@ -1,3 +1,18 @@
+// Main downloader file
+// Copyright (C) 2024 polarbub
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License version 3 as published by
+// the Free Software Foundation
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 #include <curl/curl.h>
 #include <iostream>
 #include <iomanip>
@@ -62,7 +77,7 @@ std::string u8ToString(u_int8_t in) {
 
 int main(int argc, char* argv[]) {
     if(argc < 3) {
-        std::cout << "Not enough arguments\nUsage: " << argv[0] << " [npmap tilegroup URL] [out file name]" << std::endl;;
+        std::cout << "Not enough arguments\nUsage: " << argv[0] << " [park code] [out file name]" << std::endl;;
     }
 
     cv::Mat finalImage;
@@ -70,8 +85,8 @@ int main(int argc, char* argv[]) {
 
     std::vector<u_int8_t> outvec;
     long code = 200;
-    // std::string baseURL = "https://www.nps.gov/maps/hfc/park-maps/ozar/brochure-map/TileGroup";
-    std::string baseURL = argv[1];
+    std::string baseURL = "https://www.nps.gov/maps/hfc/park-maps/" + std::string(argv[1]) + "brochure-map/TileGroup";
+    // std::string baseURL = argv[1];
 
     std::cout << "Finding highest resolution" << std::endl;
 
